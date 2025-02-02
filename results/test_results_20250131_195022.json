@@ -1,0 +1,10 @@
+{
+    "actor_critic_training": {
+        "episode_reward": -1.0,
+        "service_level": 0.0,
+        "bullwhip": 0.0,
+        "policy_loss": 5527.693224430084,
+        "value_loss": 198.02897523641587,
+        "timestamp": "2025-01-31T19:50:22.605126"
+    }
+}

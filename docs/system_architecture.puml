@@ -1,0 +1,41 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+skinparam backgroundColor transparent
+
+[Environment\n(3-Echelon SC)] as ENV
+note right of ENV
+  States:
+  It (Inventory)
+  Bt (Backorders)
+  Pt (Prices)
+  dt (Demand)
+end note
+
+[Information\nSharing Network] as ISN
+
+package "Parallel Processing" {
+  [Transformer\nNetwork] as TN
+  [Fuzzy\nController] as FC
+  [MOEA] as MOEA
+}
+
+[Actor-Critic\nNetwork] as AC
+note right of AC
+  Processes inputs from
+  all three components
+  to make decisions
+end note
+
+ENV --> ISN : States
+ISN --> TN
+ISN --> FC
+ISN --> MOEA
+
+TN --> AC : Demand Predictions
+FC --> AC : Fuzzy Rules
+MOEA --> AC : Pareto Solutions
+
+AC --> ENV : Actions (at)\nEnvironment Update
+
+@enduml
